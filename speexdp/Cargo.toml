@@ -1,0 +1,42 @@
+[package]
+name = "speexdp"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+aya = { path = "/tmp/aya/aya", version = ">=0.11", features = [
+    "async_tokio"
+] }
+aya-log = { path = "/tmp/aya/aya-log", version = "0.1" }
+speexdp-common = { path = "../speexdp-common", features = ["userspace"] }
+anyhow = "1.0.42"
+clap = { version = "3.1", features = ["derive"] }
+env_logger = "0.9"
+log = "0.4"
+tokio = { version = "1.18", features = [
+    "macros",
+    "rt",
+    "rt-multi-thread",
+    "net",
+    "signal"
+] }
+poem = { git = "https://github.com/poem-web/poem", branch = "master", version = "1.3.50", features = [
+    "tokio-rustls",
+    "sse",
+    "anyhow"
+] }
+poem-openapi = { git = "https://github.com/poem-web/poem", branch = "master", version = "2.0.21", features = [
+    "redoc",
+    "openapi-explorer"
+] }
+rtnetlink = "0.11.0"
+futures = "0.3.25"
+pam = "0.7.0"
+
+[[bin]]
+name = "speexdp"
+path = "src/main.rs"
+
+[patch.crates-io]
+aya = { path = "/tmp/aya" }
